@@ -24,4 +24,8 @@ local.properties
 proguard/
 
 # Log Files
+<<<<<<< HEAD
 *.log
+=======
+*.log
+>>>>>>> branch 'master' of https://github.com/MarcelHenze/CharCreator.git
