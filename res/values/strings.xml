@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CharCreater</string>
+    <string name="action_settings">Settings</string>
+    <string name="reroll_button">Reroll Button</string>
+    <string name="title_activity_start_screen">StartScreen</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_char_erstellung">CharErstellung</string>
+
+</resources>
