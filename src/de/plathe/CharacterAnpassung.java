@@ -1,9 +1,16 @@
 package de.plathe;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.text.ParseException;
+
+import org.apache.http.client.ClientProtocolException;
+
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,9 +20,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CharacterAnpassung extends ActionBarActivity {
-
+	
+	private CharListe charListe;
+	private Character character;
+	private Button finish;
 	private String[] attributListe = { "St", "Gs", "Gw", "Ko", "Int", "Zt",
 			"Au", "pA", "Wk", "Sb", "B", "SchB", "AusB", "LP", "AP", "Körpergröße",
 			"Gewicht", "Fachkenntnisse", "Waffenfertigkeiten", "Allgemeinwissen",
@@ -25,12 +36,30 @@ public class CharacterAnpassung extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_char_anpassung);
-		final Character character = (Character) getIntent().getSerializableExtra(CharErstellung.SER_KEY);
+		character = (Character) getIntent().getSerializableExtra(CharErstellung.SER_KEY);
 		character.setzeWerte();
-		Button finish = (Button) findViewById(R.id.finishButton);
+		finish = (Button) findViewById(R.id.finishButton);
+		charListe = new CharListe(getApplicationContext());
+		init();
+	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// getMenuInflater().inflate(R.menu.main, menu);
+		return false;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	public void init() {
 		ViewGroup insertPoint = (ViewGroup) findViewById(R.id.mainframe);
-
 		for (int i = 0; i < attributListe.length; i++) {
 			LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View statrow = vi.inflate(R.layout.statrow, null);
@@ -277,20 +306,32 @@ public class CharacterAnpassung extends ActionBarActivity {
 			}
 			insertPoint.addView(statrow);
 		}
+		
+		finish.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				try {
+					charListe.addCharacter(character);
+				} catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (URISyntaxException e) {
+					e.printStackTrace();
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				Toast.makeText(getApplicationContext(), "Character gespeichert!", Toast.LENGTH_LONG).show();
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						Intent intent = new Intent(getApplicationContext(), StartScreen.class);
+						finish();
+						startActivity(intent);						
+					}
+				}, 350);
+			}
+		});
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// getMenuInflater().inflate(R.menu.main, menu);
-		return false;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+	
 }

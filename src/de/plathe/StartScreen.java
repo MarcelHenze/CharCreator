@@ -1,8 +1,8 @@
 package de.plathe;
 
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,11 +10,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class StartScreen extends ActionBarActivity {
+	
+	private CharListe charListe;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start_screen);
+		charListe = new CharListe(getApplicationContext());
 		Button createNewChar = (Button) findViewById(R.id.createNewChar);
 		createNewChar.setOnClickListener(new OnClickListener() {		
 			@Override
