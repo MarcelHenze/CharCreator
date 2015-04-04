@@ -61,14 +61,13 @@ public class CharacterAnpassung extends ActionBarActivity {
 	public void init() {
 		ViewGroup insertPoint = (ViewGroup) findViewById(R.id.mainframe);
 		for (int i = 0; i < attributListe.length; i++) {
-			LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			View statrow = vi.inflate(R.layout.statrow, null);
+			LayoutInflater li = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View statrow = li.inflate(R.layout.statrow, null);
 			TextView name = (TextView) statrow.findViewById(R.id.statname);
-			name.setText(attributListe[i]);
-
 			final TextView value = (TextView) statrow.findViewById(R.id.statvalue);
 			ImageView reroll = (ImageView) statrow.findViewById(R.id.reroll);
-
+			
+			name.setText(attributListe[i]);
 			switch (attributListe[i]) {
 			case "St":
 				value.setText("" + character.getStärke());
