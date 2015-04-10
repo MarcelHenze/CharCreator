@@ -325,8 +325,8 @@ public class CharacterAnpassung extends ActionBarActivity {
 					@Override
 					public void run() {
 						Intent intent = new Intent(getApplicationContext(), StartScreen.class);
-						finish();
-						startActivity(intent);						
+						intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(intent);
 					}
 				}, 350);
 			}

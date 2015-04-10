@@ -37,7 +37,6 @@ public class StartScreen extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(), CharErstellung.class);
-				finish();
 				startActivity(intent);
 			}
 		});
@@ -48,6 +47,9 @@ public class StartScreen extends ActionBarActivity {
 			ImageView charIcon = (ImageView) charField.findViewById(R.id.charIcon);
 			TextView nameField = (TextView) charField.findViewById(R.id.charName);
 			final ViewGroup charDetailFrame = (ViewGroup) charField.findViewById(R.id.charDetails);
+			TextView raceField = (TextView) charDetailFrame.findViewById(R.id.charRace);
+			TextView classField = (TextView) charDetailFrame.findViewById(R.id.charClass);
+			TextView genderField = (TextView) charDetailFrame.findViewById(R.id.charGender);
 
 			charIcon.setImageResource(R.drawable.dice);
 			charIcon.setOnClickListener(new OnClickListener() {				
@@ -69,6 +71,9 @@ public class StartScreen extends ActionBarActivity {
 			});
 
 			nameField.setText(c.getName());
+			raceField.setText("Rasse : "+c.getRasse());
+			classField.setText("Klasse : "+c.getKlasse());
+			genderField.setText("Geschlecht : "+c.getGeschlecht());
 			
 			fillChar(c, charDetailFrame);
 

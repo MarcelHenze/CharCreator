@@ -11,7 +11,7 @@
         android:padding="10dp" >
 
         <ImageView
-            android:id="@+id/charIcon"         
+            android:id="@+id/charIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
@@ -30,6 +30,27 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/charRace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/charClass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/charGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#000" />
         </LinearLayout>
     </LinearLayout>
 

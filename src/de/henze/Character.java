@@ -7,15 +7,19 @@ public class Character implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public enum Geschlecht {
-		männlich, weiblich
+	public enum Rasse {
+		a,b,c
 	};
 	public enum Klasse {
 		a,b,c
 	};
+	public enum Geschlecht {
+		männlich, weiblich
+	};
 
-	private Geschlecht geschlecht;
+	private Rasse rasse;
 	private Klasse klasse;
+	private Geschlecht geschlecht;
 	private int Stärke, Geschicklichkeit, Gewandtheit, Konstitution, Intelligenz, Zaubertalent,
 	Aussehen, persönliche_Ausstrahlung, Willenskraft, Selbstbeherrschung, Bewegungsweite,
 	Schadensbonus, Ausdauerbonus, Lebenspunkte, Ausdauerpunkte, Körpergröße, Gewicht, Fachkenntnisse,
@@ -24,8 +28,9 @@ public class Character implements Serializable {
 	
 	public Character() {
 		super();
-		geschlecht = null;
+		setRasse(null);
 		klasse = null;
+		geschlecht = null;
 	}
 	
 	public void setzeWerte() {
@@ -59,20 +64,36 @@ public class Character implements Serializable {
 		return Random;
 	}
 
-	public void setGeschlecht(Geschlecht geschlecht) {
-		this.geschlecht = geschlecht;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Rasse getRasse() {
+		return rasse;
+	}
+
+	public void setRasse(Rasse rasse) {
+		this.rasse = rasse;
 	}
 	
-	public Geschlecht getGeschlecht() {
-		return geschlecht;
+	public Klasse getKlasse() {
+		return klasse;
 	}
 	
 	public void setKlasse(Klasse klasse) {
 		this.klasse = klasse;
 	}
 	
-	public Klasse getKlasse() {
-		return klasse;
+	public Geschlecht getGeschlecht() {
+		return geschlecht;
+	}
+	
+	public void setGeschlecht(Geschlecht geschlecht) {
+		this.geschlecht = geschlecht;
 	}
 
 	public int getStärke() {
@@ -294,13 +315,5 @@ public class Character implements Serializable {
 	// 30 + Ko/2
 	public void setGifttoleranz() {
 		Gifttoleranz = 30 + Konstitution / 2;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 }

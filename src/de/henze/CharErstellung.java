@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class CharErstellung extends ActionBarActivity {
 
 	private EditText nameField;
-	private ImageView klasse1, klasse2, klasse3, male, female;
+	private ImageView rasse1, rasse2, rasse3, klasse1, klasse2, klasse3, male, female;
 	private Button next;
 	Character character = new Character();
 	public final static String SER_KEY = "de.plathe.CharacterObject.ser";
@@ -26,6 +26,30 @@ public class CharErstellung extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_char_erstellung);
 		nameField = (EditText) findViewById(R.id.nameField);
+
+		rasse1 = (ImageView) findViewById(R.id.rasse1);
+		rasse1.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				character.setRasse(Character.Rasse.a);
+			}
+		});
+
+		rasse2 = (ImageView) findViewById(R.id.rasse2);
+		rasse2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				character.setRasse(Character.Rasse.b);
+			}
+		});
+
+		rasse3 = (ImageView) findViewById(R.id.rasse3);
+		rasse3.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				character.setRasse(Character.Rasse.c);
+			}
+		});
 
 		klasse1 = (ImageView) findViewById(R.id.klasse1);
 		klasse1.setOnClickListener(new OnClickListener() {
@@ -70,16 +94,15 @@ public class CharErstellung extends ActionBarActivity {
 		next.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (!nameField.getText().toString().equals("") && character.getKlasse() != null && character.getGeschlecht() != null) {					
+				if (!nameField.getText().toString().equals("") && character.getRasse() != null && character.getKlasse() != null && character.getGeschlecht() != null) {					
 					Intent intent = new Intent(getApplicationContext(), CharacterAnpassung.class);
 					character.setName(nameField.getText().toString());
 					Bundle mBundle = new Bundle();
 					mBundle.putSerializable(SER_KEY, character);
 					intent.putExtras(mBundle);
-					finish();
 					startActivity(intent);
 				} else {
-					Toast popup = Toast.makeText(getApplicationContext(), "Bitte Namen eingeben und Klasse/Geschlecht auswählen", Toast.LENGTH_SHORT);	
+					Toast popup = Toast.makeText(getApplicationContext(), "Bitte Namen eingeben und Rasse/Klasse/Geschlecht auswählen", Toast.LENGTH_SHORT);	
 					popup.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
 					popup.show();
 				}
