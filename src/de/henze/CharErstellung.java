@@ -1,4 +1,4 @@
-package de.plathe;
+package de.henze;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package de.plathe;
+package de.henze;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,11 +17,37 @@ public class CharDetails extends ActionBarActivity {
 			"Au", "pA", "Wk", "Sb", "B", "SchB", "AusB", "LP", "AP", "Körpergröße",
 			"Gewicht", "Fachkenntnisse", "Waffenfertigkeiten", "Allgemeinwissen",
 			"ungewöhnliche Fähigkeiten", "Zauberkünste", "Gifttoleranz" };
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_char_details);
+		setContentView(R.layout.activity_char_details);		
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		//getMenuInflater().inflate(R.menu.char_details, menu);
+		return false;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	public void setCharacter(Character c) {
+		character = c;
+	}
+	
+	public void config() {
 		ViewGroup charFrame = (ViewGroup) findViewById(R.id.charFrame);
 		for (int i = 0; i < attributListe.length; i++) {
 			LayoutInflater li = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -101,32 +127,8 @@ public class CharDetails extends ActionBarActivity {
 
 			default:
 				break;
-			}
-			
+			}			
 			charFrame.addView(tv);			
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.char_details, menu);
-		return false;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-	
-	public void setCharacter(Character c) {
-		character = c;
 	}
 }

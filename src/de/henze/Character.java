@@ -1,4 +1,4 @@
-package de.plathe;
+package de.henze;
 
 import java.io.Serializable;
 import java.util.Random;
